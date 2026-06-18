@@ -185,14 +185,18 @@ function RegisterPage() {
     try {
       setLoading(true);
 
-      await handleRegister({
+      const user = await handleRegister({
         fullname: form.fullname,
         email: form.email,
         contact: form.contact,
         password: form.password,
         isSeller: form.isSeller,
       });
-      navigate('/')
+      if (user.role == "buyer") {
+        navigate("/");
+      } else if (user.role == "seller") {
+        navigate("/seller/get-products");
+      }
     } catch (error) {
       console.log(error);
     } finally {

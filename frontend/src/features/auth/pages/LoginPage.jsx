@@ -65,11 +65,15 @@ function LoginPage() {
     try {
       setLoading(true);
 
-      await handlelogin({
+      const user = await handlelogin({
         email: form.email,
         password: form.password,
       });
-      navigate("/");
+      if (user.role == "buyer") {
+        navigate("/");
+      } else if (user.role == "seller") {
+        navigate("/seller/get-products");
+      }
     } catch (error) {
       console.log(error.message);
     } finally {

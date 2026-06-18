@@ -4,6 +4,8 @@ const ProductRouter = Router();
 import {
   createProducts,
   getsellerProducts,
+  getAllProducts,
+  getSingleProductDetail,
 } from "../controller/products.controller.js";
 import { authenticateSeller } from "../middleware/auth.middleware.js";
 import { validationProduct } from "../validator/product.validators.js";
@@ -22,4 +24,6 @@ ProductRouter.post(
 );
 ProductRouter.get("/getall/seller", authenticateSeller, getsellerProducts);
 
+ProductRouter.get("/", getAllProducts);
+ProductRouter.get("/details/:id", getSingleProductDetail);
 export default ProductRouter;

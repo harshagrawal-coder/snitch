@@ -111,3 +111,18 @@ export async function googleOAuth(req, res) {
     });
   }
 }
+
+export async function getmeuser(req, res) {
+  const user = req.user;
+  res.status(200).json({
+    message: "user fetched successfully",
+    success: true,
+    user: {
+      id: user._id,
+      email: user.email,
+      contact: user.contact,
+      fullname: user.fullname,
+      role: user.role,
+    },
+  });
+}
